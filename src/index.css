@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 20px;
   background-color: #f4f4f4;
+  height: 100vh;
 }
 
 h1 {
@@ -91,4 +92,14 @@ button {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.todos {
+  max-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.todo {
+  margin: 15px
 }

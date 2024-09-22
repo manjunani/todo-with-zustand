@@ -45,27 +45,30 @@ const TodoList = () => {
     setUpdateId(filteredTodo[0].id);
     setUpdatedText(filteredTodo[0].text);
   };
+  const handleCancel = () => {
+    setOpen(false);
+  };
 
   const displayModal = () => {
     return (
-      <div>
-        <div>
-          <h3>Update Todo</h3>
-          <input
-            type='text'
-            value={updateText}
-            onChange={(e) => setUpdatedText(e.target.value)}
-          />
-          <button onClick={handleUpdateTodo}>Save</button>
-        </div>
+      <div className='modalflex'>
+        <h3>Update Todo</h3>
+        <input
+          type='text'
+          value={updateText}
+          onChange={(e) => setUpdatedText(e.target.value)}
+        />
+
+        <button onClick={handleCancel}>Cancel</button>
+        <button onClick={handleUpdateTodo}>Submit</button>
       </div>
     );
   };
 
   return (
-    <div>
+    <div className='todoheight'>
       {open && displayModal()}
-      <h1>TodoList</h1>
+      <h1>My Todos</h1>
       <input
         type='text'
         value={newTodo}
@@ -74,9 +77,9 @@ const TodoList = () => {
       />
       <button onClick={handleAddTodo}>Add</button>
 
-      <ul>
+      <ul className='todos'>
         {todos.map((todo) => (
-          <li key={todo.id}>
+          <li key={todo.id} className='todo'>
             <span
               style={{
                 textDecoration: todo.completed ? 'line-through' : 'none',
@@ -86,8 +89,10 @@ const TodoList = () => {
             >
               {todo.text}
             </span>
-            <button onClick={() => handleModal(todo.id)}>Update</button>
-            <button onClick={() => removeTodo(todo.id)}>Delete</button>
+            <div>
+              <button onClick={() => handleModal(todo.id)}>Edit</button>
+              <button onClick={() => removeTodo(todo.id)}>Delete</button>
+            </div>
           </li>
         ))}
       </ul>
